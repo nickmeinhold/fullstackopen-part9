@@ -16,22 +16,17 @@ npm install
 Available npm scripts
 
 - `npm run calculateBmi`
-- `npm run calculateBmi`
 
   Runs the BMI exercise (`bmiCalculator.ts`). You can pass height and weight as command-line arguments.
 
   Usage examples:
 
   ```bash
-  # Using the hard-coded example (no args):
-  npm run calculateBmi
-
   # Pass height (cm) and weight (kg):
   npm run calculateBmi -- 180 91
   # Output: e.g. "Overweight"
   ```
 
-- `npm run calculateExercises`
 - `npm run calculateExercises`
 
   Runs the exercise calculator (`exerciseCalculator.ts`). Pass the target as the first argument, followed by any number of daily exercise hours.
