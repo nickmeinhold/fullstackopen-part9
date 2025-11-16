@@ -44,9 +44,20 @@ const calculateExercises = (
   };
 };
 
-// Hard-coded example
-const hours = [3, 0, 2, 4.5, 0, 3, 1];
-const target = 2;
-console.log(calculateExercises(hours, target));
+import { parseExerciseArguments } from "./utils";
+
+if (require.main === module) {
+  try {
+    const args = process.argv.slice(2);
+    const { target, hours } = parseExerciseArguments(args);
+    console.log(calculateExercises(hours, target));
+  } catch (e) {
+    if (e instanceof Error) {
+      console.log("Error:", e.message);
+    } else {
+      console.log("Unknown error");
+    }
+  }
+}
 
 export { calculateExercises, ExerciseResult };

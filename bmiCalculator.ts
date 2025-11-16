@@ -18,4 +18,18 @@ export const calculateBmi = (height: number, weight: number): string => {
   }
 };
 
-console.log(calculateBmi(180, 74));
+import { parseBmiArguments } from './utils';
+
+if (require.main === module) {
+  try {
+    const args = process.argv.slice(2);
+    const { height, weight } = parseBmiArguments(args);
+    console.log(calculateBmi(height, weight));
+  } catch (e) {
+    if (e instanceof Error) {
+      console.log('Error:', e.message);
+    } else {
+      console.log('Unknown error');
+    }
+  }
+}

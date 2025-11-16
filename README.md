@@ -16,25 +16,42 @@ npm install
 Available npm scripts
 
 - `npm run calculateBmi`
+- `npm run calculateBmi`
 
-  Runs the BMI exercise (`bmiCalculator.ts`) which prints the BMI category for hard-coded values.
+  Runs the BMI exercise (`bmiCalculator.ts`). You can pass height and weight as command-line arguments.
 
-  Example:
+  Usage examples:
 
   ```bash
+  # Using the hard-coded example (no args):
   npm run calculateBmi
-  # Expected output: e.g. "Normal range"
+
+  # Pass height (cm) and weight (kg):
+  npm run calculateBmi -- 180 91
+  # Output: e.g. "Overweight"
   ```
 
 - `npm run calculateExercises`
+- `npm run calculateExercises`
 
-  Runs the exercise calculator (`exerciseCalculator.ts`) which prints an object summarizing exercise statistics for a hard-coded input.
+  Runs the exercise calculator (`exerciseCalculator.ts`). Pass the target as the first argument, followed by any number of daily exercise hours.
 
-  Example:
+  Usage examples:
 
   ```bash
-  npm run calculateExercises
-  # Expected output: summary object with periodLength, trainingDays, average, rating, etc.
+  # Using the script with the sample input from the exercise prompt:
+  npm run calculateExercises -- 2 1 0 2 4.5 0 3 1 0 4
+
+  # Example output:
+  # {
+  #   periodLength: 9,
+  #   trainingDays: 6,
+  #   success: false,
+  #   rating: 2,
+  #   ratingDescription: 'not too bad but could be better',
+  #   target: 2,
+  #   average: 1.7222222222222223
+  # }
   ```
 
 - `npm test`
@@ -63,3 +80,14 @@ Notes
 - The project uses `ts-node` for running TypeScript files directly during development. If you prefer a build step for production, use `npm run build` and run the emitted files under `build/`.
 
 - Tests are configured with `ts-jest`. If you add ESM-style imports or change `tsconfig.json` to NodeNext, the Jest config may need adjustments.
+
+Error handling and CLI notes
+
+- Both calculators validate command-line input and will print an error message when arguments are missing or not numeric. Pass arguments after `--` when using the `npm run` form, for example:
+
+```bash
+npm run calculateBmi -- <height(cm)> <weight(kg)>
+npm run calculateExercises -- <target> <day1> <day2> ...
+```
+
+Replace `<height(cm)>`, `<weight(kg)>`, `<target>`, and `<dayN>` with numeric values. The `exerciseCalculator` accepts any length for daily hours (including zero-length arrays when testing — though the parser requires at least one daily value).
