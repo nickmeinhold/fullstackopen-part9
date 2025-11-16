@@ -55,7 +55,7 @@ Available npm scripts
 
   ```bash
   npm run build
-  node build/index.js   # if you have a compiled CLI at build/index.js
+  node build/index.js
   ```
 
 Notes
