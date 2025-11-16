@@ -6,5 +6,7 @@ export interface DiaryEntry {
   date: string; // ISO
   weather: Weather;
   visibility: Visibility;
-  comment: string;
+  comment?: string;
 }
+
+export type NonSensitiveDiaryEntry = Omit<DiaryEntry, "comment">;

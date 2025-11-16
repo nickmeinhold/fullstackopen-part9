@@ -1,6 +1,6 @@
 import { DiaryEntry } from "../types";
 
-export const diaries: DiaryEntry[] = [
+const diaryEntries: DiaryEntry[] = [
   {
     id: 1,
     date: "2017-01-01",
@@ -30,3 +30,5 @@ export const diaries: DiaryEntry[] = [
     comment: "I almost failed the landing but I survived",
   },
 ];
+
+export default diaryEntries;
