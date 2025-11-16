@@ -85,4 +85,4 @@ npm run calculateBmi -- <height(cm)> <weight(kg)>
 npm run calculateExercises -- <target> <day1> <day2> ...
 ```
 
-Replace `<height(cm)>`, `<weight(kg)>`, `<target>`, and `<dayN>` with numeric values. The `exerciseCalculator` accepts any length for daily hours (including zero-length arrays when testing — though the parser requires at least one daily value).
+Replace `<height(cm)>`, `<weight(kg)>`, `<target>`, and `<dayN>` with numeric values. The `exerciseCalculator` accepts any length for daily hours (including zero-length arrays). If you pass only a target value (no daily hours), the program will return a result with `periodLength: 0` and sensible defaults (average 0, `success: false`).

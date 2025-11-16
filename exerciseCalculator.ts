@@ -14,6 +14,25 @@ const calculateExercises = (
 ): ExerciseResult => {
   const periodLength = dailyHours.length;
   const trainingDays = dailyHours.filter((h) => h > 0).length;
+
+  if (periodLength === 0) {
+    // No data: return a sensible default without dividing by zero
+    const average = 0;
+    const success = false;
+    const rating = 1;
+    const ratingDescription = 'you need to exercise more';
+
+    return {
+      periodLength,
+      trainingDays,
+      success,
+      rating,
+      ratingDescription,
+      target,
+      average,
+    };
+  }
+
   const sum = dailyHours.reduce((acc, cur) => acc + cur, 0);
   const average = sum / periodLength;
   const success = average >= target;

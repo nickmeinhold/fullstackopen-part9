@@ -13,7 +13,8 @@ export const parseBmiArguments = (args: string[]): { height: number; weight: num
 export const parseExerciseArguments = (
   args: string[]
 ): { target: number; hours: number[] } => {
-  if (args.length < 2) throw new Error('Not enough arguments. Provide target and at least one daily hour.');
+  // allow zero or more daily hours after the target
+  if (args.length < 1) throw new Error('Not enough arguments. Provide at least the target value.');
 
   const target = Number(args[0]);
   if (isNaN(target)) throw new Error('Target value is not a number');
