@@ -1,0 +1,34 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Attach to ts-node-dev (patientor-backend:9229)",
+      "type": "node",
+      "request": "attach",
+      "port": 9229,
+      "restart": true,
+      "cwd": "${workspaceFolder}/patientor-backend",
+      "skipFiles": ["<node_internals>/**"]
+    },
+    {
+      "name": "Run npm dev:inspect (patientor-backend)",
+      "type": "node",
+      "request": "launch",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev:inspect"],
+      "cwd": "${workspaceFolder}/patientor-backend",
+      "console": "integratedTerminal",
+      "autoAttachChildProcesses": true
+    },
+    {
+      "name": "Launch built app (patientor-backend)",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/patientor-backend/build/index.js",
+      "cwd": "${workspaceFolder}/patientor-backend",
+      "preLaunchTask": "npm: build",
+      "outFiles": ["${workspaceFolder}/patientor-backend/build/**/*.js"],
+      "console": "integratedTerminal"
+    }
+  ]
+}
