@@ -1,3 +1,5 @@
+import { parseBmiArguments } from "./utils";
+
 export interface BmiValues {
   value1: number;
   value2: number;
@@ -18,8 +20,6 @@ export const calculateBmi = (height: number, weight: number): string => {
   }
 };
 
-import { parseBmiArguments } from './utils';
-
 if (require.main === module) {
   try {
     const args = process.argv.slice(2);
@@ -27,9 +27,9 @@ if (require.main === module) {
     console.log(calculateBmi(height, weight));
   } catch (e) {
     if (e instanceof Error) {
-      console.log('Error:', e.message);
+      console.log("Error:", e.message);
     } else {
-      console.log('Unknown error');
+      console.log("Unknown error");
     }
   }
 }
