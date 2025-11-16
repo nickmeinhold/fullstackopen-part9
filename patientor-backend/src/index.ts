@@ -13,7 +13,7 @@ app.get("/api/diagnoses", (_req, res) => {
 });
 
 app.get("/api/patients", (_req, res) => {
-  res.json(patientsService.getPatients());
+  res.json(patientsService.getPatientsWithoutSsn());
 });
 
 const PORT = 3000;
