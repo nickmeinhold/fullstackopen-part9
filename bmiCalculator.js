@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.calculateBmi = void 0;
+var utils_1 = require("./utils");
 var calculateBmi = function (height, weight) {
     var heightInMeters = height / 100;
     var bmi = weight / (heightInMeters * heightInMeters);
@@ -18,7 +19,6 @@ var calculateBmi = function (height, weight) {
     }
 };
 exports.calculateBmi = calculateBmi;
-var utils_1 = require("./utils");
 if (require.main === module) {
     try {
         var args = process.argv.slice(2);
@@ -27,10 +27,10 @@ if (require.main === module) {
     }
     catch (e) {
         if (e instanceof Error) {
-            console.log('Error:', e.message);
+            console.log("Error:", e.message);
         }
         else {
-            console.log('Unknown error');
+            console.log("Unknown error");
         }
     }
 }
