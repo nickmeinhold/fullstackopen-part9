@@ -16,6 +16,7 @@ function App() {
     visibility: "",
     comment: "",
   });
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchDiaries = async () => {
@@ -25,15 +26,12 @@ function App() {
         );
         setDiaries(response.data);
       } catch (error) {
-        console.error("Error fetching diaries:", error);
+        let message = "Error fetching diaries.";
         if (axios.isAxiosError(error)) {
-          console.error("Axios error details:", {
-            message: error.message,
-            code: error.code,
-            response: error.response?.data,
-            config: error.config,
-          });
+          message = error.response?.data?.error || error.message;
         }
+        setErrorMessage(message);
+        setTimeout(() => setErrorMessage(null), 5000);
       }
     };
 
@@ -57,13 +55,12 @@ function App() {
       setDiaries([...diaries, response.data]);
       setNewDiary({ date: "", weather: "", visibility: "", comment: "" });
     } catch (error) {
-      console.error("Error adding diary:", error);
+      let message = "Error adding diary.";
       if (axios.isAxiosError(error)) {
-        console.error(
-          "Axios error details:",
-          error.response?.data || error.message
-        );
+        message = error.response?.data?.error || error.message;
       }
+      setErrorMessage(message);
+      setTimeout(() => setErrorMessage(null), 5000);
     }
   };
 
@@ -71,6 +68,11 @@ function App() {
     <>
       <div>
         <h1>Flight Diary</h1>
+        {errorMessage && (
+          <div style={{ color: "red", marginBottom: "1em" }}>
+            {errorMessage}
+          </div>
+        )}
         <form onSubmit={addDiary}>
           <div>
             <label>Date: </label>
