@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 interface DiaryEntry {
@@ -16,6 +16,29 @@ function App() {
     visibility: "",
     comment: "",
   });
+
+  useEffect(() => {
+    const fetchDiaries = async () => {
+      try {
+        const response = await axios.get<DiaryEntry[]>(
+          "http://localhost:3000/api/diaries"
+        );
+        setDiaries(response.data);
+      } catch (error) {
+        console.error("Error fetching diaries:", error);
+        if (axios.isAxiosError(error)) {
+          console.error("Axios error details:", {
+            message: error.message,
+            code: error.code,
+            response: error.response?.data,
+            config: error.config,
+          });
+        }
+      }
+    };
+
+    fetchDiaries();
+  }, []);
 
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
