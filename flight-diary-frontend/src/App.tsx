@@ -122,16 +122,15 @@ function App() {
           <button type="submit">Add</button>
         </form>
         <h2>Diary Entries</h2>
-        <ul>
-          {diaries.map((diary, index) => (
-            <li key={index}>
-              <p>Date: {diary.date}</p>
-              <p>Weather: {diary.weather}</p>
-              <p>Visibility: {diary.visibility}</p>
-              <p>Comment: {diary.comment}</p>
-            </li>
-          ))}
-        </ul>
+
+        {diaries.map((diary) => (
+          <>
+            <h3>{diary.date}</h3>
+            <p>Weather: {diary.weather}</p>
+            <p>Visibility: {diary.visibility}</p>
+            <p>Comment: {diary.comment}</p>
+          </>
+        ))}
       </div>
     </>
   );
