@@ -84,6 +84,7 @@ const PatientPage: React.FC<PatientPageProps> = ({ diagnoses }) => {
       {showEntryForm && (
         <AddEntryForm
           patientId={patient.id}
+          diagnoses={diagnoses}
           onSuccess={async () => {
             setShowEntryForm(false);
             const response = await axios.get<Patient>(

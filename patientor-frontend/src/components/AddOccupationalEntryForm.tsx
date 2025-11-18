@@ -1,5 +1,16 @@
 import React, { useState } from "react";
-import { Button, TextField, FormControl, InputLabel } from "@mui/material";
+import {
+  Button,
+  TextField,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+  Checkbox,
+  ListItemText,
+  SelectChangeEvent,
+} from "@mui/material";
+import { Diagnosis } from "../types";
 
 interface OccupationalHealthcareEntryForm {
   type: "OccupationalHealthcare";
@@ -16,6 +27,7 @@ interface OccupationalHealthcareEntryForm {
 
 interface AddOccupationalEntryFormProps {
   patientId: string;
+  diagnoses?: Diagnosis[];
   onSuccess?: () => void;
   onError?: (error: string) => void;
   onCancel?: () => void;
@@ -23,6 +35,7 @@ interface AddOccupationalEntryFormProps {
 
 const AddOccupationalEntryForm: React.FC<AddOccupationalEntryFormProps> = ({
   patientId,
+  diagnoses,
   onSuccess,
   onError,
   onCancel,
@@ -42,13 +55,9 @@ const AddOccupationalEntryForm: React.FC<AddOccupationalEntryFormProps> = ({
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleDiagnosisCodesChange = (
-    e: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setFormData((prev) => ({
-      ...prev,
-      diagnosisCodes: e.target.value.split(",").map((code) => code.trim()),
-    }));
+  const handleDiagnosisCodesChange = (e: SelectChangeEvent<string[]>) => {
+    const value = e.target.value as unknown as string[];
+    setFormData((prev) => ({ ...prev, diagnosisCodes: value }));
   };
 
   const handleSickLeaveChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -140,14 +149,25 @@ const AddOccupationalEntryForm: React.FC<AddOccupationalEntryFormProps> = ({
         fullWidth
         style={{ marginBottom: 16 }}
       />
-      <TextField
-        label="Diagnosis Codes (comma separated)"
-        name="diagnosisCodes"
-        value={formData.diagnosisCodes.join(",")}
-        onChange={handleDiagnosisCodesChange}
-        fullWidth
-        style={{ marginBottom: 16 }}
-      />
+      <FormControl fullWidth style={{ marginBottom: 16 }}>
+        <InputLabel id="diag-select-label">Diagnosis Codes</InputLabel>
+        <Select
+          labelId="diag-select-label"
+          multiple
+          value={formData.diagnosisCodes}
+          onChange={handleDiagnosisCodesChange}
+          renderValue={(selected) => (selected as string[]).join(", ")}
+        >
+          {(diagnoses || []).map((d: Diagnosis) => (
+            <MenuItem key={d.code} value={d.code}>
+              <Checkbox
+                checked={formData.diagnosisCodes.indexOf(d.code) > -1}
+              />
+              <ListItemText primary={`${d.code} ${d.name}`} />
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
       <TextField
         label="Employer Name"
         name="employerName"

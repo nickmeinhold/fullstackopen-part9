@@ -3,9 +3,11 @@ import { Button, ToggleButton, ToggleButtonGroup, Box } from "@mui/material";
 import AddHospitalEntryForm from "./AddHospitalEntryForm";
 import AddOccupationalEntryForm from "./AddOccupationalEntryForm";
 import AddHealthCheckEntryForm from "./AddHealthCheckEntryForm";
+import { Diagnosis } from "../types";
 
 interface AddEntryFormProps {
   patientId: string;
+  diagnoses: Diagnosis[];
   onSuccess: () => void;
   onError: (error: string) => void;
   onCancel: () => void;
@@ -15,6 +17,7 @@ type EntryType = "Hospital" | "OccupationalHealthcare" | "HealthCheck";
 
 const AddEntryForm: React.FC<AddEntryFormProps> = ({
   patientId,
+  diagnoses,
   onSuccess,
   onError,
   onCancel,
@@ -39,6 +42,7 @@ const AddEntryForm: React.FC<AddEntryFormProps> = ({
         {entryType === "Hospital" && (
           <AddHospitalEntryForm
             patientId={patientId}
+            diagnoses={diagnoses}
             onSuccess={onSuccess}
             onError={onError}
             onCancel={onCancel}
@@ -47,6 +51,7 @@ const AddEntryForm: React.FC<AddEntryFormProps> = ({
         {entryType === "OccupationalHealthcare" && (
           <AddOccupationalEntryForm
             patientId={patientId}
+            diagnoses={diagnoses}
             onSuccess={onSuccess}
             onError={onError}
             onCancel={onCancel}
@@ -55,6 +60,7 @@ const AddEntryForm: React.FC<AddEntryFormProps> = ({
         {entryType === "HealthCheck" && (
           <AddHealthCheckEntryForm
             patientId={patientId}
+            diagnoses={diagnoses}
             onSuccess={onSuccess}
             onError={onError}
             onCancel={onCancel}
