@@ -4,23 +4,8 @@ import axios from "axios";
 import MaleIcon from "@mui/icons-material/Male";
 import FemaleIcon from "@mui/icons-material/Female";
 import TransgenderIcon from "@mui/icons-material/Transgender";
-import { Diagnosis } from "../types";
-
-interface Entry {
-  date: string;
-  description: string;
-  diagnosisCodes?: string[];
-}
-
-interface Patient {
-  id: string;
-  name: string;
-  dateOfBirth: string;
-  ssn?: string;
-  gender: string;
-  occupation: string;
-  entries: Entry[];
-}
+import { Diagnosis, Patient } from "../types";
+import EntryDetails from "./EntryDetails";
 
 interface PatientPageProps {
   diagnoses: Diagnosis[];
@@ -77,24 +62,8 @@ const PatientPage: React.FC<PatientPageProps> = ({ diagnoses }) => {
         <p>No entries.</p>
       ) : (
         <div>
-          {patient.entries.map((entry, idx) => (
-            <div key={idx} style={{ marginBottom: "1em" }}>
-              {entry.date}
-              <em> {entry.description}</em>
-              <br />
-              {entry.diagnosisCodes && entry.diagnosisCodes.length > 0 && (
-                <ul>
-                  {entry.diagnosisCodes.map((code) => {
-                    const diagnosis = diagnoses.find((d) => d.code === code);
-                    return (
-                      <li key={code}>
-                        {code} {diagnosis ? `- ${diagnosis.name}` : ""}
-                      </li>
-                    );
-                  })}
-                </ul>
-              )}
-            </div>
+          {patient.entries.map((entry) => (
+            <EntryDetails key={entry.id} entry={entry} diagnoses={diagnoses} />
           ))}
         </div>
       )}
