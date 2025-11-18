@@ -1,8 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import MaleIcon from "@mui/icons-material/Male";
+import FemaleIcon from "@mui/icons-material/Female";
+import TransgenderIcon from "@mui/icons-material/Transgender";
 
-interface Entry {} // You can expand this based on your backend Entry type
+interface Entry {
+  date: string;
+  description: string;
+  diagnosisCodes?: string[];
+}
 
 interface Patient {
   id: string;
@@ -38,7 +45,16 @@ const PatientPage: React.FC = () => {
 
   return (
     <div>
-      <h2>{patient.name}</h2>
+      <h2>
+        {patient.name}{" "}
+        {patient.gender === "male" ? (
+          <MaleIcon fontSize="large" />
+        ) : patient.gender === "female" ? (
+          <FemaleIcon fontSize="large" />
+        ) : (
+          <TransgenderIcon fontSize="large" />
+        )}
+      </h2>
       <p>
         <strong>ID:</strong> {patient.id}
       </p>
@@ -49,20 +65,28 @@ const PatientPage: React.FC = () => {
         <strong>SSN:</strong> {patient.ssn}
       </p>
       <p>
-        <strong>Gender:</strong> {patient.gender}
-      </p>
-      <p>
         <strong>Occupation:</strong> {patient.occupation}
       </p>
       <h3>Entries</h3>
       {patient.entries.length === 0 ? (
         <p>No entries.</p>
       ) : (
-        <ul>
-          {patient.entries.map((_entry, idx) => (
-            <li key={idx}>Entry details here</li>
+        <div>
+          {patient.entries.map((entry, idx) => (
+            <div key={idx} style={{ marginBottom: "1em" }}>
+              {entry.date}
+              <em> {entry.description}</em>
+              <br />
+              {entry.diagnosisCodes && entry.diagnosisCodes.length > 0 && (
+                <ul>
+                  {entry.diagnosisCodes.map((code) => (
+                    <li>{code}</li>
+                  ))}
+                </ul>
+              )}
+            </div>
           ))}
-        </ul>
+        </div>
       )}
     </div>
   );
