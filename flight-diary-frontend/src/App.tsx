@@ -85,32 +85,103 @@ function App() {
           </div>
           <div>
             <label>Weather: </label>
-            <select
-              name="weather"
-              value={newDiary.weather}
-              onChange={handleChange}
-            >
-              <option value="">Select</option>
-              <option value="sunny">Sunny</option>
-              <option value="rainy">Rainy</option>
-              <option value="cloudy">Cloudy</option>
-              <option value="stormy">Stormy</option>
-              <option value="windy">Windy</option>
-            </select>
+            <div>
+              <label>
+                <input
+                  type="radio"
+                  name="weather"
+                  value="sunny"
+                  checked={newDiary.weather === "sunny"}
+                  onChange={handleChange}
+                />
+                Sunny
+              </label>
+              <label>
+                <input
+                  type="radio"
+                  name="weather"
+                  value="rainy"
+                  checked={newDiary.weather === "rainy"}
+                  onChange={handleChange}
+                />
+                Rainy
+              </label>
+              <label>
+                <input
+                  type="radio"
+                  name="weather"
+                  value="cloudy"
+                  checked={newDiary.weather === "cloudy"}
+                  onChange={handleChange}
+                />
+                Cloudy
+              </label>
+              <label>
+                <input
+                  type="radio"
+                  name="weather"
+                  value="stormy"
+                  checked={newDiary.weather === "stormy"}
+                  onChange={handleChange}
+                />
+                Stormy
+              </label>
+              <label>
+                <input
+                  type="radio"
+                  name="weather"
+                  value="windy"
+                  checked={newDiary.weather === "windy"}
+                  onChange={handleChange}
+                />
+                Windy
+              </label>
+            </div>
           </div>
           <div>
             <label>Visibility: </label>
-            <select
-              name="visibility"
-              value={newDiary.visibility}
-              onChange={handleChange}
-            >
-              <option value="">Select</option>
-              <option value="great">Great</option>
-              <option value="good">Good</option>
-              <option value="ok">Ok</option>
-              <option value="poor">Poor</option>
-            </select>
+            <div>
+              <label>
+                <input
+                  type="radio"
+                  name="visibility"
+                  value="great"
+                  checked={newDiary.visibility === "great"}
+                  onChange={handleChange}
+                />
+                Great
+              </label>
+              <label>
+                <input
+                  type="radio"
+                  name="visibility"
+                  value="good"
+                  checked={newDiary.visibility === "good"}
+                  onChange={handleChange}
+                />
+                Good
+              </label>
+              <label>
+                <input
+                  type="radio"
+                  name="visibility"
+                  value="ok"
+                  checked={newDiary.visibility === "ok"}
+                  onChange={handleChange}
+                />
+                Ok
+              </label>
+              <label>
+                <input
+                  type="radio"
+                  name="visibility"
+                  value="poor"
+                  checked={newDiary.visibility === "poor"}
+                  onChange={handleChange}
+                />
+                Poor
+              </label>
+            </div>
           </div>
           <div>
             <label>Comment: </label>
