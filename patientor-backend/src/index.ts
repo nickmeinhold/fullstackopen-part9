@@ -30,6 +30,14 @@ app.get("/api/patients", (_req, res) => {
   res.json(patientsService.getPatientsWithoutSsn());
 });
 
+app.get("/api/patients/:id", (req, res) => {
+  const patient = patientsService.getPatient(req.params.id);
+  if (!patient) {
+    return res.status(404).json({ error: "Patient not found" });
+  }
+  res.json(patient);
+});
+
 app.post("/api/patients", (req, res) => {
   try {
     const validatedPatient = patientSchema.parse(req.body);
