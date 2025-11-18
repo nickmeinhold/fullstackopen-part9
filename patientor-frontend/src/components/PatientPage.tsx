@@ -101,9 +101,18 @@ const PatientPage: React.FC<PatientPageProps> = ({ diagnoses }) => {
         <p>No entries.</p>
       ) : (
         <div>
-          {patient.entries.map((entry) => (
-            <EntryDetails key={entry.id} entry={entry} diagnoses={diagnoses} />
-          ))}
+          {patient.entries
+            .slice()
+            .sort(
+              (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+            )
+            .map((entry) => (
+              <EntryDetails
+                key={entry.id}
+                entry={entry}
+                diagnoses={diagnoses}
+              />
+            ))}
         </div>
       )}
     </div>
