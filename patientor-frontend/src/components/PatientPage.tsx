@@ -4,6 +4,7 @@ import axios from "axios";
 import MaleIcon from "@mui/icons-material/Male";
 import FemaleIcon from "@mui/icons-material/Female";
 import TransgenderIcon from "@mui/icons-material/Transgender";
+import { Diagnosis } from "../types";
 
 interface Entry {
   date: string;
@@ -21,7 +22,11 @@ interface Patient {
   entries: Entry[];
 }
 
-const PatientPage: React.FC = () => {
+interface PatientPageProps {
+  diagnoses: Diagnosis[];
+}
+
+const PatientPage: React.FC<PatientPageProps> = ({ diagnoses }) => {
   const { id } = useParams<{ id: string }>();
   const [patient, setPatient] = useState<Patient | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -79,9 +84,14 @@ const PatientPage: React.FC = () => {
               <br />
               {entry.diagnosisCodes && entry.diagnosisCodes.length > 0 && (
                 <ul>
-                  {entry.diagnosisCodes.map((code) => (
-                    <li>{code}</li>
-                  ))}
+                  {entry.diagnosisCodes.map((code) => {
+                    const diagnosis = diagnoses.find((d) => d.code === code);
+                    return (
+                      <li key={code}>
+                        {code} {diagnosis ? `- ${diagnosis.name}` : ""}
+                      </li>
+                    );
+                  })}
                 </ul>
               )}
             </div>
