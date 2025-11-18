@@ -99,6 +99,7 @@ const AddHealthCheckEntryForm: React.FC<AddHealthCheckEntryFormProps> = ({
         name="description"
         value={formData.description}
         onChange={handleFormChange}
+        required
         fullWidth
         style={{ marginBottom: 16 }}
       />
@@ -108,6 +109,7 @@ const AddHealthCheckEntryForm: React.FC<AddHealthCheckEntryFormProps> = ({
         type="date"
         value={formData.date}
         onChange={handleFormChange}
+        required
         fullWidth
         style={{ marginBottom: 16 }}
         InputLabelProps={{ shrink: true }}
@@ -117,6 +119,7 @@ const AddHealthCheckEntryForm: React.FC<AddHealthCheckEntryFormProps> = ({
         name="specialist"
         value={formData.specialist}
         onChange={handleFormChange}
+        required
         fullWidth
         style={{ marginBottom: 16 }}
       />

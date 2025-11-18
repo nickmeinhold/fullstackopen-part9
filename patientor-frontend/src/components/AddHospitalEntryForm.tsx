@@ -110,6 +110,7 @@ const AddHospitalEntryForm: React.FC<AddHospitalEntryFormProps> = ({
         name="description"
         value={formData.description}
         onChange={handleFormChange}
+        required
         fullWidth
         style={{ marginBottom: 16 }}
       />
@@ -119,6 +120,7 @@ const AddHospitalEntryForm: React.FC<AddHospitalEntryFormProps> = ({
         type="date"
         value={formData.date}
         onChange={handleFormChange}
+        required
         fullWidth
         style={{ marginBottom: 16 }}
         InputLabelProps={{ shrink: true }}
@@ -128,6 +130,7 @@ const AddHospitalEntryForm: React.FC<AddHospitalEntryFormProps> = ({
         name="specialist"
         value={formData.specialist}
         onChange={handleFormChange}
+        required
         fullWidth
         style={{ marginBottom: 16 }}
       />

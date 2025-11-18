@@ -116,6 +116,7 @@ const AddOccupationalEntryForm: React.FC<AddOccupationalEntryFormProps> = ({
         name="description"
         value={formData.description}
         onChange={handleFormChange}
+        required
         fullWidth
         style={{ marginBottom: 16 }}
       />
@@ -125,6 +126,7 @@ const AddOccupationalEntryForm: React.FC<AddOccupationalEntryFormProps> = ({
         type="date"
         value={formData.date}
         onChange={handleFormChange}
+        required
         fullWidth
         style={{ marginBottom: 16 }}
         InputLabelProps={{ shrink: true }}
@@ -134,6 +136,7 @@ const AddOccupationalEntryForm: React.FC<AddOccupationalEntryFormProps> = ({
         name="specialist"
         value={formData.specialist}
         onChange={handleFormChange}
+        required
         fullWidth
         style={{ marginBottom: 16 }}
       />
