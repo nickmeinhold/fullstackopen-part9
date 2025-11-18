@@ -6,7 +6,7 @@ import FemaleIcon from "@mui/icons-material/Female";
 import TransgenderIcon from "@mui/icons-material/Transgender";
 import { Diagnosis, Patient } from "../types";
 import EntryDetails from "./EntryDetails";
-import AddHospitalEntryForm from "./AddHospitalEntryForm";
+import AddEntryForm from "./AddEntryForm";
 import { Button, Alert } from "@mui/material";
 
 interface PatientPageProps {
@@ -82,7 +82,7 @@ const PatientPage: React.FC<PatientPageProps> = ({ diagnoses }) => {
         </Alert>
       )}
       {showEntryForm && (
-        <AddHospitalEntryForm
+        <AddEntryForm
           patientId={patient.id}
           onSuccess={async () => {
             setShowEntryForm(false);
