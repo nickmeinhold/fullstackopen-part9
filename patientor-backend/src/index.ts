@@ -2,7 +2,8 @@ import express from "express";
 import diagnosesService from "./services/diagnosesService";
 import patientsService from "./services/patientsService";
 import cors from "cors";
-import toNewPatient from "./utils";
+import toNewPatient from "./utilsPatient";
+import { toNewEntry } from "./utilsEntry";
 import z from "zod";
 
 const app = express();
@@ -36,6 +37,22 @@ app.get("/api/patients/:id", (req, res) => {
     return res.status(404).json({ error: "Patient not found" });
   }
   res.json(patient);
+});
+
+// Add entry to patient
+app.post("/api/patients/:id/entries", (req, res) => {
+  try {
+    const patientId = req.params.id;
+    const entry = toNewEntry(req.body);
+    const newEntry = patientsService.addEntry(patientId, entry);
+    res.status(201).json(newEntry);
+  } catch (error) {
+    res
+      .status(400)
+      .json({
+        error: error instanceof Error ? error.message : "Unknown error",
+      });
+  }
 });
 
 app.post("/api/patients", (req, res) => {

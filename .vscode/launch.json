@@ -2,31 +2,23 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Launch built app (patientor-backend)",
-      "type": "node",
-      "request": "launch",
-      "program": "${workspaceFolder}/patientor-backend/build/index.js",
-      "cwd": "${workspaceFolder}/patientor-backend",
-      "preLaunchTask": "npm: build",
-      "outFiles": ["${workspaceFolder}/patientor-backend/build/**/*.js"],
-      "console": "integratedTerminal"
-    },
-    {
-      "name": "Launch built app (flight-diary-backend)",
-      "type": "node",
-      "request": "launch",
-      "program": "${workspaceFolder}/patientor-backend/build/index.js",
-      "cwd": "${workspaceFolder}/patientor-backend",
-      "preLaunchTask": "npm: build",
-      "outFiles": ["${workspaceFolder}/flight-diary-backend/build/**/*.js"],
-      "console": "integratedTerminal"
-    },
-    {
       "type": "chrome",
       "request": "launch",
       "name": "Launch Frontend",
       "url": "http://localhost:5173",
       "webRoot": "${workspaceFolder}/flight-diary-frontend/src"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Debug TypeScript (patientor-backend)",
+      "runtimeArgs": ["-r", "ts-node/register"],
+      "args": ["${workspaceFolder}/patientor-backend/src/index.ts"],
+      "cwd": "${workspaceFolder}/patientor-backend",
+      "env": {
+        "TS_NODE_PROJECT": "${workspaceFolder}/patientor-backend/tsconfig.json"
+      },
+      "skipFiles": ["<node_internals>/**"]
     }
   ]
 }
